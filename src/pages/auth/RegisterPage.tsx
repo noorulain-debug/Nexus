@@ -18,6 +18,17 @@ export const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
   
+  // 🔥 Password strength function
+  const getPasswordStrength = (password: string) => {
+    if (password.length < 6) return "Weak";
+    if (
+      password.match(/[A-Z]/) &&
+      password.match(/[0-9]/) &&
+      password.match(/[@$!%*?&]/)
+    ) return "Strong";
+    return "Medium";
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -131,7 +142,16 @@ export const RegisterPage: React.FC = () => {
               fullWidth
               startAdornment={<Lock size={18} />}
             />
-            
+            {/* 🔥 Strength Meter */}
+            <p className={`text-sm ${
+              getPasswordStrength(password) === "Weak"
+                ? "text-red-500"
+                : getPasswordStrength(password) === "Medium"
+                ? "text-yellow-500"
+                : "text-green-500"
+            }`}>
+              Strength: {getPasswordStrength(password)}
+            </p>
             <Input
               label="Confirm password"
               type="password"

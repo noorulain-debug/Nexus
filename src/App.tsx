@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-
+import CalendarPage from "./pages/calendar/CalendarPage";
+import PaymentsPage from "./pages/payments/PaymentsPage";
+import VideoCallPage from "./pages/video/VideoCallPage";
 // Layouts
 import { DashboardLayout } from './components/layout/DashboardLayout';
 
 // Auth Pages
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
-
 // Dashboard Pages
 import { EntrepreneurDashboard } from './pages/dashboard/EntrepreneurDashboard';
 import { InvestorDashboard } from './pages/dashboard/InvestorDashboard';
@@ -43,6 +44,9 @@ function App() {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
             <Route path="investor" element={<InvestorDashboard />} />
+            <Route path="calendar" element={<CalendarPage />} />
+            <Route path="payments" element={<PaymentsPage />} />
+            <Route path="video-call" element={<VideoCallPage />} />
           </Route>
           
           {/* Profile Routes */}
